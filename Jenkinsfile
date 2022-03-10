@@ -1,36 +1,52 @@
-node {
-    stage('Git Clone') {	
-	 git credentialsId: 'git', url: 'https://github.com/kartikeyapro/ks.git'
-     }
-	 
-    stage('Maven Version'){
-		sh 'mvn --version'
-		}
-		
-
-	stage('Maven Clean'){
-		sh 'mvn clean'
-		}
-		
-		
-		
-	stage('Maven Validate'){
-		sh 'mvn validate'
-		}
-	stage('Maven Compile'){
-		sh 'mvn compile'
-		}	
-    stage('Maven Test') {
-        sh 'mvn test'
+pipeline {
+    agent any
+    tools { 
+		maven 'maven-3.8.4'
     }
-	stage('Maven Package') {
-		sh 'mvn package'
-		}
-    stage('Maven Deploy')
-	{
-		sh 'mvn deploy'
-	}
-}
 
+    stages {
+        stage('Git Clone') {
+            steps {
+				git credentialsId: 'git', url: 'https://github.com/kartikeyapro/ks.git'
+                  }
+				}
+		stage('Maven Version') {
+            steps {
+				sh 'mvn --version'
+                  }
+				}
+		stage('mvn clean') {
+            steps {
+				sh 'mvn clean'
+                  }
+				}
+		stage('mvn validate') {
+            steps {
+				sh 'mvn validate'
+                  }
+				}
+		stage('Maven Compile') {
+            steps {
+				sh 'mvn compile'
+                  }
+				}
+		stage('Maven Test') {
+            steps {
+				sh 'mvn test'
+                  }
+				}	
+		stage('Maven Package') {
+            steps {
+				sh 'mvn package'
+                  }
+				}	
+		stage('Maven deploy') {
+            steps {
+				sh 'mvn deploy'
+                  }
+				}			
+          
+            }
+}
 
 

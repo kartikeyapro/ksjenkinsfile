@@ -3,9 +3,17 @@ node {
 	 git credentialsId: 'git', url: 'https://github.com/kartikeyapro/ks.git'
      }
 	 
+    stage('Maven Version'){
+		sh 'mvn --version'
+		}
+		
+
 	stage('Maven Clean'){
 		sh 'mvn clean'
 		}
+		
+		
+		
 	stage('Maven Validate'){
 		sh 'mvn validate'
 		}
@@ -23,4 +31,6 @@ node {
 		sh 'mvn deploy'
 	}
 }
+
+
 

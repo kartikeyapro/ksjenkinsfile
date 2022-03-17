@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-				git credentialsId: 'git', url: 'https://github.com/kartikeyapro/ks.git'
+				git credentialsId: 'ks-at-531438626024', url: 'https://git-codecommit.us-east-1.amazonaws.com/v1/repos/KartikeyaSoft_Project'
                   }
 				}
 		stage('Maven Version') {
